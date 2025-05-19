@@ -4,10 +4,23 @@
   --card-back-color: #f0f0f0;
 }
 
+body.light {
+  background-image: url('lugia.png');
+  background-size: cover;            
+  background-repeat: no-repeat;     
+  background-position: center center;
+  background-attachment: fixed; 
+}
+
 body.dark {
+  background-image: url('rayquaza.jpg');
   --bg-color: #1e1e1e;
   --text-color: #ffffff;
   --card-back-color: #333333;
+  background-size: cover;            
+  background-repeat: no-repeat;      
+  background-position: center center;
+  background-attachment: fixed; 
 }
 
 body {
@@ -18,28 +31,128 @@ body {
   padding: 0;
 }
 
+/* Header */
 header {
   padding: 1em;
   text-align: center;
 }
 
+header h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2rem;
+  text-align: center;
+  color: #ffcb05;
+  text-shadow: 2px 2px 0 #3b4cca, 4px 4px 0 #2a75bb;
+  margin-bottom: 1rem;
+}
+
+/* Controls */
 .controls {
-  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #fff3b0;
+  border: 2px solid #3b4cca;
+  border-radius: 12px;
+  max-width: fit-content;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.45rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.controls label {
+  margin-right: 4px;
+  color: #000;
+}
+
+.controls select {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.45rem;
+  background-color: #ffeb99;
+  color: #2a75bb;
+  border: 2px solid #2a75bb;
+  padding: 4px 6px;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+.controls button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.45rem;
+  padding: 6px 10px;
+  border: 2px solid #3b4cca;
+  background-color: #ffcb05;
+  color: #2a75bb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s;
+  text-shadow: 1px 1px #3b4cca;
+  box-shadow: 2px 2px 0 #3b4cca;
+  margin: 0 5px;
+}
+
+.controls button:hover {
+  transform: scale(1.05);
+  background-color: #f5b700;
+  box-shadow: 3px 3px 0 #2a75bb;
+}
+
+/* Status display */
 .status {
-  margin-bottom: 1em;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.4rem;
+  color: #2a75bb;
+  background: #ffeb99;
+  padding: 6px 10px;
+  border: 2px solid #3b4cca;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  max-width: fit-content;
+  margin: 0 auto;
 }
 
+.status span {
+  background: #fffacd;
+  padding: 2px 6px;
+  border-radius: 5px;
+  border: 1px solid #2a75bb;
+  white-space: nowrap;
+}
+
+/* Game Grid */
 #game-grid {
-  width: 600px;  /* or whatever fits your design */
+  width: 600px;
   margin: 20px auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* adds space between cards */
-  justify-content: center; /* center the grid */
+  gap: 10px;
+  justify-content: center;
 }
 
+#game-grid.hard {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+#game-grid.hard .card {
+  width: 80px;
+  height: 110px;
+}
+
+/* Card styles */
 .card {
   width: 120px;
   height: 160px;
@@ -54,7 +167,7 @@ header {
   height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  transform: rotateY(180deg); 
+  transform: rotateY(180deg);
 }
 
 .card.flip .card-inner {
@@ -69,40 +182,30 @@ header {
   backface-visibility: hidden;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-front img,
 .card-back img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 .card-back {
   transform: rotateY(180deg);
-  background-color: white; 
+  background-color: white;
 }
 
-/* Pop-up style */
-#win-popup {
+/* Win Popup */
+#win-popup,
+#lose-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,7 +215,8 @@ header {
   transition: opacity 0.3s ease;
 }
 
-#win-popup.show {
+#win-popup.show,
+#lose-popup.show {
   opacity: 1;
   pointer-events: auto;
 }
@@ -127,6 +231,41 @@ header {
   animation: popIn 0.5s ease forwards;
 }
 
+#lose-popup .popup-content {
+  box-shadow: 0 0 20px #ff4d4d;
+}
+
+/* Popup buttons */
+#close-popup,
+#close-lose-popup {
+  margin-top: 1em;
+  padding: 0.5em 1.5em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+#close-popup {
+  background-color: #ffd700;
+  color: #333;
+}
+
+#close-popup:hover {
+  background-color: #ffbf00;
+}
+
+#close-lose-popup {
+  background-color: #ff4d4d;
+  color: #fff;
+}
+
+#close-lose-popup:hover {
+  background-color: #e60000;
+}
+
+/* Animation */
 @keyframes popIn {
   0% {
     transform: scale(0.5);
@@ -136,68 +275,4 @@ header {
     transform: scale(1);
     opacity: 1;
   }
-}
-
-#close-popup {
-  margin-top: 1em;
-  padding: 0.5em 1.5em;
-  border: none;
-  background-color: #ffd700;
-  color: #333;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-#close-popup:hover {
-  background-color: #ffbf00;
-}
-
-/* lose popup */
-#lose-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-#lose-popup.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#lose-popup .popup-content {
-  background: white;
-  color: #000;
-  padding: 2em 3em;
-  border-radius: 15px;
-  box-shadow: 0 0 20px #ff4d4d;
-  text-align: center;
-  animation: popIn 0.5s ease forwards;
-}
-
-#close-lose-popup {
-  margin-top: 1em;
-  padding: 0.5em 1.5em;
-  border: none;
-  background-color: #ff4d4d;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-#close-lose-popup:hover {
-  background-color: #e60000;
 }

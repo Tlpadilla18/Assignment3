@@ -37,6 +37,7 @@ $(document).ready(() => {
   $('#theme').change(() => {
     const theme = $('#theme').val();
     $('body').toggleClass('dark', theme === 'dark');
+    $('body').toggleClass('light', theme === 'light');
   });
 
   $('#powerup-btn').click(() => {
@@ -63,6 +64,8 @@ $(document).ready(() => {
     $('#game-grid').empty();
     resetStatus();
 
+    $('#game-grid').removeClass('hard');
+
     let pairCount;
     let timeLimit;
 
@@ -78,6 +81,7 @@ $(document).ready(() => {
       case 'hard':
         pairCount = 9;
         timeLimit = 120;
+        $('#game-grid').addClass('hard');
         break;
     }
 
@@ -87,7 +91,6 @@ $(document).ready(() => {
     timeLeft = timeLimit;
     $('#timer').text(`Time: ${timeLeft}s`);
 
-    // Pick random Pokémon
     selectedPokemon = [];
     const usedIndices = new Set();
     while (selectedPokemon.length < pairCount) {
@@ -98,7 +101,6 @@ $(document).ready(() => {
       }
     }
 
-    // Duplicate and shuffle
     const cards = [];
     selectedPokemon.forEach((pokemon) => {
       cards.push({ ...pokemon });
