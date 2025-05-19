@@ -27,7 +27,6 @@ $(document).ready(() => {
     $('#game-grid').empty();
     resetStatus();
 
-    // Reset Power-Up
     powerUpUses = 3;
     $('#powerup-btn').text('Power-Up (3 left)');
 
@@ -74,7 +73,7 @@ $(document).ready(() => {
     switch (difficulty) {
       case 'easy':
         pairCount = 3;
-        timeLimit = 60;
+        timeLimit = 15;
         break;
       case 'medium':
         pairCount = 6;
