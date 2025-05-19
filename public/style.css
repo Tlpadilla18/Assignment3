@@ -197,6 +197,20 @@ header h1 {
   background-color: white;
 }
 
+.card:not(.flip):not(.matched):hover .card-inner {
+  transform: rotateY(170deg) scale(1.05);
+}
+
+.card:not(.flip):not(.matched):hover {
+  box-shadow: 0 0 15px 4px rgba(255, 203, 5, 0.7);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card.matched .card-inner {
+  transform: rotateY(180deg);
+  opacity: 0.8;
+}
+
 /* Win Popup */
 #win-popup,
 #lose-popup {
