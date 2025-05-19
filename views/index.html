@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokémon Memory Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="index.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <h1>Pokémon Memory Game</h1>
+    <div class="controls">
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <label for="theme">Theme:</label>
+      <select id="theme">
+        <option value="light" selected>Light</option>
+        <option value="dark">Dark</option>
+      </select>
+
+      <button id="start-btn">Start</button>
+      <button id="reset-btn">Reset</button>
+      <button id="powerup-btn">Power-Up</button>
+    </div>
+    <div class="status">
+      <span id="clicks">Clicks: 0</span>
+      <span id="pairs-left">Pairs Left: 0</span>
+      <span id="pairs-matched">Pairs Matched: 0</span>
+      <span id="total-pairs">Total Pairs: 0</span>
+      <span id="timer">Time: 0s</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="game-grid"></div>
+  </main>
+
+  <!-- WIN POPUP: place here just before closing body -->
+  <div id="win-popup" class="hidden">
+    <div class="popup-content">
+      <h2>🎉 Congratulations! You Win! 🎉</h2>
+      <button id="close-popup">Close</button>
+    </div>
+  </div>
+
+  <!-- LOSS POPUP -->
+  <div id="lose-popup">
+  <div class="popup-content">
+    <h2>💀 Game Over!</h2>
+    <p>Time's up. Better luck next time!</p>
+    <button id="close-lose-popup">Close</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-back-color: #f0f0f0;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #ffffff;
+  --card-back-color: #333333;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 1em;
+  text-align: center;
+}
+
+.controls {
+  margin-bottom: 1em;
+}
+
+.status {
+  margin-bottom: 1em;
+}
+
+#game-grid {
+  width: 600px;  /* or whatever fits your design */
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* adds space between cards */
+  justify-content: center; /* center the grid */
+}
+
+.card {
+  width: 120px;
+  height: 160px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg); 
+}
+
+.card.flip .card-inner {
+  transform: rotateY(0deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-front img,
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: white; 
+}
+
+/* Pop-up style */
+#win-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#win-popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-content {
+  background: white;
+  color: #000;
+  padding: 2em 3em;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #ffd700;
+  text-align: center;
+  animation: popIn 0.5s ease forwards;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#close-popup {
+  margin-top: 1em;
+  padding: 0.5em 1.5em;
+  border: none;
+  background-color: #ffd700;
+  color: #333;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#close-popup:hover {
+  background-color: #ffbf00;
+}
+
+/* lose popup */
+#lose-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#lose-popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#lose-popup .popup-content {
+  background: white;
+  color: #000;
+  padding: 2em 3em;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #ff4d4d;
+  text-align: center;
+  animation: popIn 0.5s ease forwards;
+}
+
+#close-lose-popup {
+  margin-top: 1em;
+  padding: 0.5em 1.5em;
+  border: none;
+  background-color: #ff4d4d;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#close-lose-popup:hover {
+  background-color: #e60000;
+}
