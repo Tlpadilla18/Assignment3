@@ -49,9 +49,11 @@ $(document).ready(() => {
     powerUpUses--;
     $('#powerup-btn').text(`Power-Up (${powerUpUses} left)`);
 
-    $('.card').addClass('flip');
+    const unmatchedCards = $('.card').not('.flip').not('.matched');
+
+    unmatchedCards.addClass('flip');
     setTimeout(() => {
-      $('.card').removeClass('flip');
+      unmatchedCards.removeClass('flip');
     }, 1000);
   });
 
@@ -150,6 +152,8 @@ $(document).ready(() => {
         $('#pairs-left').text(`Pairs Left: ${totalPairs - matches}`);
         firstCard.off('click');
         secondCard.off('click');
+        firstCard.addClass('matched');
+        secondCard.addClass('matched');
         resetBoard();
         if (matches === totalPairs) {
           clearInterval(timer);
